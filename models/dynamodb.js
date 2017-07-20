@@ -54,3 +54,5 @@ class DynamoDB extends Model{
     return documentClient.delete(dbParams).promise();
   }
 }
+
+module.exports = DynamoDB;

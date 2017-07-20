@@ -1,6 +1,6 @@
 {
   "name": "simple-data-model",
-  "version": "0.0.1",
+  "version": "0.0.5",
   "description": "simple data model",
   "main": "index.js",
   "author": "Yoshiyuki Kato",
