@@ -17,7 +17,9 @@ class DynamoDB extends Model{
     
     return documentClient.scan(dbParams).promise()
     .then((result) => {
-      return result.Items.map(this.validate.bind(this));
+      return {
+        Items : result.Items.map(this.validate.bind(this))
+      };
     });
   }
 
@@ -29,7 +31,9 @@ class DynamoDB extends Model{
     dbParams.Key[this.primaryKey] = key;
     return documentClient.get(dbParams).promise()
     .then((result) => {
-      return this.validate(result.Item);
+      return {
+        Item : this.validate(result.Item)
+      };
     });
   }
 
