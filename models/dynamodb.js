@@ -9,7 +9,23 @@ class DynamoDB extends Model{
     this.tableName = tableName;
     this.primaryKey = primaryKey;
   }
-  
+
+  all(){
+    const dbParams = {
+      TableName : this.tableName
+    };
+    return documentClient.scan(dbParams).promise();
+  }
+
+  find(key){
+    const dbParams = {
+      TableName : this.tableName,
+      Key : {}
+    }
+    dbParams.Key[this.primaryKey] = key;
+    return documentClient.get(dbParams).promise();
+  }
+
   _save(params){
     const dbParams = {
       TableName : this.tableName,
