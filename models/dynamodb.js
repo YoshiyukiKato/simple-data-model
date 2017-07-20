@@ -14,7 +14,11 @@ class DynamoDB extends Model{
     const dbParams = {
       TableName : this.tableName
     };
-    return documentClient.scan(dbParams).promise();
+    
+    return documentClient.scan(dbParams).promise()
+    .then((result) => {
+      return result.Items.map(this.validate.bind(this));
+    });
   }
 
   find(key){
@@ -23,7 +27,10 @@ class DynamoDB extends Model{
       Key : {}
     }
     dbParams.Key[this.primaryKey] = key;
-    return documentClient.get(dbParams).promise();
+    return documentClient.get(dbParams).promise()
+    .then((result) => {
+      return this.validate(result.Item);
+    });
   }
 
   _save(params){
