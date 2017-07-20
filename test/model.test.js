@@ -12,4 +12,18 @@ describe("model", () => {
       assert(testModel);
     });
   });
+
+  describe("validate", () => {
+    it("validate data", () => {
+      const model = new Model({
+        properties : {
+          id : { type : "string" },
+          additionalProperties : false
+        }
+      });
+      let params = { id : "hoge", targetURL : "fuga" };
+      const result = model.validate(params);
+      assert(result);
+    });
+  });
 });

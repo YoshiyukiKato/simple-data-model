@@ -1,5 +1,5 @@
 const Ajv = require("ajv");
-const ajv = new Ajv();
+const ajv = new Ajv({ removeAdditional : true });
 
 class Model{
   constructor(schema={}){ //ajv format schema
